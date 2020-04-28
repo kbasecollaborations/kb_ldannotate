@@ -23,14 +23,7 @@ class ldannotateutils:
                 raise ValueError('required output_file field was not defined')
 
 
-    def build_ldannotate_command(self, params, output_dir):
-        vcf_file = params.get("vcf_ref")
-        gff_file = params.get("gff_ref")
-        candidate_snp_file = params.get("candidate_snps")
-        feature_type = params.get("feature_type")
-        threshold = params.get("threshold")
-        output_file = params.get("output_file")
-
+    def build_ldannotate_command(self, vcf_file, gff_file, candidate_snp_file,feature_type, threshold, output_file, output_dir):
         command = "python3 /kb/module/deps/LD-annot0.4.py " +  vcf_file + " " + gff_file + " " + candidate_snp_file + " " + feature_type + " " + threshold + " " + output_dir + "/" + output_file
 
         return command

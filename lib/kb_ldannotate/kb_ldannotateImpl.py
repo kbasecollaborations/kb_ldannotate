@@ -57,10 +57,19 @@ class kb_ldannotate:
         logging.info("validating input parameters")
         self.lau.validate_params(params)
 
-        
+
         output_dir = os.path.join(self.shared_folder, str(uuid.uuid4()))
         os.mkdir(output_dir)
-        cmd = self.lau.build_ldannotate_command(params, output_dir)
+
+        #parsing input parameters
+        vcf_file = params.get("vcf_ref")
+        gff_file = params.get("gff_ref")
+        candidate_snp_file = params.get("candidate_snps")
+        feature_type = params.get("feature_type")
+        threshold = params.get("threshold")
+        output_file = params.get("output_file")
+
+        cmd = self.lau.build_ldannotate_command(vcf_file, gff_file, candidate_snp_file, feature_type, threshold, output_file, output_dir)
 
         self.lau.run_ldannotate_command(cmd)
 
