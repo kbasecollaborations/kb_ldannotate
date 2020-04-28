@@ -48,6 +48,8 @@ except:
 
 lf = os.listdir()
 
+ld_script_path = "/kb/module/deps/calculLD.1.sh"
+
 if "checkpoint" not in lf:
     if da[-4:] != '.vcf':
 
@@ -244,9 +246,9 @@ if "checkpoint" not in lf:
     #run the bash script
 
     if da[-4:] != '.vcf':
-        os.system('bash calculLD.1.sh %s %s %s %s %s %s' % (da, an, cm, ty, thr,sm))
+        os.system('bash '+ ld_script_path + ' %s %s %s %s %s %s' % (da, an, cm, ty, thr,sm))
     else:
-        os.system('bash calculLD.1.sh %s %s %s %s %s' % (da, an, cm, ty, thr))
+        os.system('bash '+ ld_script_path +  ' %s %s %s %s %s' % (da, an, cm, ty, thr))
 
 
     
@@ -286,8 +288,8 @@ if "checkpoint" not in lf:
     dics = {}
     lowl=[]
     for line in h:
-        #l = line.strip().split('\t')
-        l = line.strip().split(' ')   #use space instead of tab
+        l = line.strip().split('\t')
+        #l = line.strip().split(' ')   #use space instead of tab
         SNP1 = l[0]+'_'+l[1]
         SNP2 = l[3]+'_'+l[4]
         if SNP1 in lsc:
@@ -360,9 +362,9 @@ else:
     #run the bash script
 
     if da[-4:] != '.vcf':
-        os.system('bash calculLD.1.sh %s %s %s %s %s %s' % (da, an, cm, ty, thr,sm))
+        os.system('bash '+ ld_script_path + '  %s %s %s %s %s %s' % (da, an, cm, ty, thr,sm))
     else:
-        os.system('bash calculLD.1.sh %s %s %s %s %s' % (da, an, cm, ty, thr))
+        os.system('bash '+ ld_script_path + '  %s %s %s %s %s' % (da, an, cm, ty, thr))
 
 
     #continuation of the python procedure

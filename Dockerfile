@@ -8,7 +8,8 @@ MAINTAINER KBase Developer
 
 # RUN apt-get update
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends tabix
+    && apt-get install -y --no-install-recommends tabix \
+    plink1.9
 
 # -----------------------------------------
 

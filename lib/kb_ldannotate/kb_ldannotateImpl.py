@@ -59,7 +59,7 @@ class kb_ldannotate:
         
         output_dir = os.path.join(self.shared_folder, str(uuid.uuid4()))
         os.mkdir(output_dir)
-        cmd = lau.build_ldannotate_command(params, output_dir)
+        cmd = self.lau.build_ldannotate_command(params, output_dir)
         exit(cmd)
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
