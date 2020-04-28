@@ -31,7 +31,7 @@ class ldannotateutils:
         threshold = params.get("threshold")
         output_file = params.get("output_file")
 
-        command = "python3 /kb/module/deps/LD-annot0.4.py " +  vcf_file + " " +gff_file + " "+ candidate_snp_file, + " "+ candidate_snp_file + " " + feature_type + " " + threshold + " " + output_dir+"/"+output_file
+        command = "python3 /kb/module/deps/LD-annot0.4.py " +  vcf_file + " " + gff_file + " " + candidate_snp_file + " " + feature_type + " " + threshold + " " + output_dir + "/" + output_file
 
         return command
 
