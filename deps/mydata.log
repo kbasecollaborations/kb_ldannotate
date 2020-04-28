@@ -1,0 +1,31 @@
+PLINK v1.90b6.9 64-bit (4 Mar 2019)
+Options in effect:
+  --allow-extra-chr
+  --chr-set 95
+  --ld-window-r2 0.4
+  --noweb
+  --out mydata
+  --r2
+  --vcf ../test/sample_data/ex_data.vcf
+
+Hostname: manish-Inspiron-5570
+Working directory: /home/manish/Desktop/apps/LDAnnot/kb_ldannotate/deps
+Start time: Mon Apr 27 19:36:49 2020
+
+Note: --noweb has no effect since no web check is implemented yet.
+Random number seed: 1588030609
+15910 MB RAM detected; reserving 7955 MB for main workspace.
+--vcf: mydata-temporary.bed + mydata-temporary.bim + mydata-temporary.fam
+written.
+19996 variants loaded from .bim file.
+288 samples (0 males, 0 females, 288 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to mydata.nosex .
+Using up to 8 threads (change this with --threads).
+Before main variant filters, 288 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.963123.
+19996 variants and 288 samples pass filters and QC.
+Note: No phenotypes present.
+--r2 to mydata.ld ... done.
+
+End time: Mon Apr 27 19:36:49 2020
