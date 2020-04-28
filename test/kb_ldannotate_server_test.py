@@ -63,11 +63,12 @@ class kb_ldannotateTest(unittest.TestCase):
         #
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methods
-        ret = self.serviceImpl.run_kb_ldannotate(self.ctx, {'workspace_name': 'man4ish_gupta:narrative_1585669223193' ,
-                                                             'vcf_ref': '/kb/module/test/sample_data/ex_data.vcf',
-                                                              'vcf_ref': '/kb/module/test/sample_data/ex_annotations.gff',
-                                                              'candidate_snps': '/kb/module/test/sample_data/ex_candidate_SNPs.txt',
-                                                              'feature_type': 'gene',
-                                                              'threshold': '0.2',
-                                                              'output_file': 'output_file'
-                                                              })
+        params = { 'workspace_name': 'man4ish_gupta:narrative_1585669223193' ,
+                   'vcf_ref': '/kb/module/test/sample_data/ex_data.vcf',
+                   'gff_ref': '/kb/module/test/sample_data/ex_annotations.gff',
+                   'candidate_snps': '/kb/module/test/sample_data/ex_candidate_SNPs.txt',
+                   'feature_type': 'gene',
+                   'threshold': '0.2',
+                   'output_file': 'output_file'
+                 }
+        ret = self.serviceImpl.run_kb_ldannotate(self.ctx, params)

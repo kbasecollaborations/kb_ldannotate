@@ -54,16 +54,19 @@ class kb_ldannotate:
         # return variables are: output
         #BEGIN run_kb_ldannotate
 
-        #lau.validate_params(params)
+        logging.info("validating input parameters")
+        self.lau.validate_params(params)
 
         
         output_dir = os.path.join(self.shared_folder, str(uuid.uuid4()))
         os.mkdir(output_dir)
         cmd = self.lau.build_ldannotate_command(params, output_dir)
-        exit(cmd)
+
+        self.lau.run_ldannotate_command(cmd)
+
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
-                                                'text_message': params['parameter_1']},
+                                                'text_message': 'Nice Report'},
                                                 'workspace_name': params['workspace_name']})
         output = {
             'report_name': report_info['name'],
