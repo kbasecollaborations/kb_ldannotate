@@ -4,6 +4,7 @@ import logging
 import os
 import uuid
 from kb_ldannotate.Utils.ldannotateutils import ldannotateutils
+from kb_ldannotate.Utils.downloaddatautils import downloaddatautils
 from installed_clients.KBaseReportClient import KBaseReport
 #END_HEADER
 
@@ -39,6 +40,7 @@ class kb_ldannotate:
         logging.basicConfig(format='%(created)s %(levelname)s: %(message)s',
                             level=logging.INFO)
         self.lau = ldannotateutils()
+        self.du = downloaddatautils()
         #END_CONSTRUCTOR
         pass
 
