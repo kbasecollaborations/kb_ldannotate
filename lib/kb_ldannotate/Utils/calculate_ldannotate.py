@@ -14,6 +14,24 @@ import subprocess
 
 class calculate_ldannotate:
 
+    def __init__(self):
+       self.callbackURL = os.environ['SDK_CALLBACK_URL']
+       pass
+
+    def validate_params(self, params):
+            if 'vcf_ref' not in params:
+                raise ValueError('required vcf_ref field was not defined')
+            elif 'gff_ref' not in params:
+                raise ValueError('require gff_ref field was not defined')
+            elif 'candidate_snps' not in params:
+                raise ValueError('required candidate_snps field was not defined')
+            elif 'feature_type' not in params:
+                raise ValueError('required feature_type field was not defined')
+            elif 'threshold' not in params:
+                raise ValueError('required threshold field was not defined')
+            elif 'output_file' not in params:
+                raise ValueError('required output_file field was not defined')
+
     def validate_vcf(self, vcf_file):
         print("checking format for vcf file:")
         print('\t', vcf_file)
@@ -72,7 +90,7 @@ class calculate_ldannotate:
         cmd2 = "awk '{if ($7 > \"'$5'\" && $1 != \"0\") sum+= ($5-$2)} END {print sum/NR}' mydata.ld > meanLD"
         self.run_command(cmd2)
 
-    def create_output_file(self, vcf_file, gff_file, candidate_snp, feature_type, threshold, outputfile):
+    def create_output_file(self, vcf_file, gff_file, candidate_snp, feature_type, threshold, outputfile, output_dir):
 
         self.validate_vcf(vcf_file)
         self.run_ld(vcf_file)
@@ -153,7 +171,7 @@ class calculate_ldannotate:
         # writing output
 
         try:
-            with open(outputfile, 'w') as outfile:
+            with open(output_dir + '/' + outputfile, 'w') as outfile:
 
                 outfile.write("SNP\tchromosome\tregion_start\tregion_end\tgene_start\tgene_end\tannotation\n")
 
@@ -184,8 +202,4 @@ class calculate_ldannotate:
         except IOError:
             print("Could not read file:", outputfile)
 
-
-if __name__ == "__main__":
-    la = LD_Annotate()
-    la.create_output_file(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6])
 

@@ -3,8 +3,9 @@
 import logging
 import os
 import uuid
-from kb_ldannotate.Utils.ldannotateutils import ldannotateutils
+#from kb_ldannotate.Utils.ldannotateutils import ldannotateutils
 from kb_ldannotate.Utils.downloaddatautils import downloaddatautils
+from kb_ldannotate.Utils.calculate_ldannotate import calculate_ldannotate
 from installed_clients.KBaseReportClient import KBaseReport
 #END_HEADER
 
@@ -39,8 +40,9 @@ class kb_ldannotate:
         self.shared_folder = config['scratch']
         logging.basicConfig(format='%(created)s %(levelname)s: %(message)s',
                             level=logging.INFO)
-        self.lau = ldannotateutils()
+        #self.lau = ldannotateutils()
         self.du = downloaddatautils()
+        self.cld = calculate_ldannotate()
         #END_CONSTRUCTOR
         pass
 
@@ -57,7 +59,7 @@ class kb_ldannotate:
         #BEGIN run_kb_ldannotate
 
         logging.info("validating input parameters")
-        self.lau.validate_params(params)
+        self.cld.validate_params(params)
 
 
         output_dir = os.path.join(self.shared_folder, str(uuid.uuid4()))
@@ -71,9 +73,10 @@ class kb_ldannotate:
         threshold = params.get("threshold")
         output_file = params.get("output_file")
 
-        cmd = self.lau.build_ldannotate_command(vcf_file, gff_file, candidate_snp_file, feature_type, threshold, output_file, output_dir)
+        #cmd = self.lau.build_ldannotate_command(vcf_file, gff_file, candidate_snp_file, feature_type, threshold, output_file, output_dir)
 
-        self.lau.run_ldannotate_command(cmd)
+        #self.lau.run_ldannotate_command(cmd)
+        self.cld.create_output_file(vcf_file, gff_file, candidate_snp_file, feature_type, threshold, output_file, output_dir)
 
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
